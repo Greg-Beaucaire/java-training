@@ -2,7 +2,6 @@ package fr.manulep.entrainement;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;

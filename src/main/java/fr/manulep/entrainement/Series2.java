@@ -3,6 +3,7 @@ package fr.manulep.entrainement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Series2 {
 	
@@ -11,47 +12,168 @@ public class Series2 {
 	}
 
 	public static List<String> selectElementsFromListStartingWithA(List<String> elements) {
-		return new ArrayList<>();
+    List<String> list = new ArrayList<String>();
+    for (String element : elements) {
+        if (element.startsWith("a")) {
+            list.add(element);
+        }
+    }
+    return list;
 	}
 
 	public static List<String> sortByLastLetter(List<String> names) {
-		return new ArrayList<>();
+    // reverse each name in the list
+    List<String> list = new ArrayList<String>();
+    for (String name : names) {
+        String reverse = new StringBuilder(name).reverse().toString();
+        list.add(reverse);
+    }
+    // sort the list
+    list.sort(null);
+    // reverse the list again
+    for (int i = 0; i < list.size(); i++) {
+        String name = list.get(i);
+        String reverse = new StringBuilder(name).reverse().toString();
+        list.set(i, reverse);
+    }
+    return list;
 	}
 	
 	public static String exportWordsWithoutALetter(List<String> names, char letter) {
-		return "";
-	}
+    // Remove null from list
+    // Exclude the names containing the letter from the list case insensitive
+    // Then sysout the list
+    List<String> list = new ArrayList<String>();
+    for (String name : names) {
+        if (name != null && !name.toLowerCase(Locale.ENGLISH).contains(String.valueOf(letter).toLowerCase(Locale.ENGLISH))) {
+            list.add(name);
+        }
+    }
+    // transform the list into a string where each word is separated by a comma and a space
+    // Remove the last comma and space
+    // Return it
+    String result = String.join(", ", list);
+    return result;
+  }
 	
 	public static String getAllLetters(List<String> words) {
-		return "";
-	}
+    // Create a string containing all the letters of the words
+    // Remove duplicate letters
+    StringBuilder sb = new StringBuilder();
+    for (String word : words) {
+        for (char c : word.toCharArray()) {
+            if (!sb.toString().contains(String.valueOf(c))) {
+                sb.append(c);
+            }
+        }
+    }
+    // transform sb to a List
+    List<String> list = new ArrayList<String>();
+    for (char c : sb.toString().toCharArray()) {
+        list.add(String.valueOf(c));
+    }
+    // sort the list
+    list.sort(null);
+    // transform the list to a string
+    String result = String.join("", list);
+    return result;
+  }
 
 	public static List<String> getElementsLowerThanNumber(List<String> elements, int maxi) {
-		return new ArrayList<>();
-	}
+    // remove duplicate from elements
+    // order the list in numerical order
+    // remove the elements equal or superior to maxi
+    // return the list
+    List<String> list = new ArrayList<String>();
+    for (String element : elements) {
+        if (element != null && !list.contains(element)) {
+            list.add(element);
+        }
+    }
+    list.sort(null);
+    for (int i = list.size() - 1; i >= 0; i--) {
+        if (Integer.parseInt(list.get(i)) >= maxi) {
+            list.remove(i);
+        }
+    }
+    return list;
+  }
 
 	public static List<Integer> exportPeerElements(List<Integer> elements) {
-		return new ArrayList<>();
+    // Remove the odd elements from the list and return it
+    List<Integer> list = new ArrayList<Integer>();
+    for (Integer element : elements) {
+        if (element % 2 == 0) {
+            list.add(element);
+        }
+    }
+    return list;
 	}
 
 	public static List<Integer> exportSortPeerElements(List<Integer> elements) {
-		return new ArrayList<>();
+    // remove duplicate from elements and sort the list. Remove odd elements. Return it
+    List<Integer> list = new ArrayList<Integer>();
+    for (Integer element : elements) {
+        if (element % 2 == 0 && !list.contains(element)) {
+            list.add(element);
+        }
+    }
+    list.sort(null);
+    return list;
 	}
 
 	public static List<Integer> allElementsExceptFirstAndLast(List<Integer> elements) {
-		return new ArrayList<>();
+    // remove the first and last element from the list and return it
+    List<Integer> list = new ArrayList<Integer>();
+    for (int i = 1; i < elements.size() - 1; i++) {
+        list.add(elements.get(i));
+    }
+    return list;
 	}
 	
 	public static List<Integer> reverseOrder(List<Integer> elements) {
-		return new ArrayList<>();
+    // reverse the list and return it
+    List<Integer> list = new ArrayList<Integer>();
+    for (int i = elements.size() - 1; i >= 0; i--) {
+        list.add(elements.get(i));
+    }
+    return list;
 	}
 
 	public static List<Integer> swapFirstandLastElement(List<Integer> elements) {
-		return new ArrayList<>();
+    // swap first and last element from the list. Return it
+    // if the list only consist in one entry, return list
+    if (elements.size() == 1) {
+        return elements;
+    }
+    int first = elements.get(0);
+    int last = elements.get(elements.size() - 1);
+    elements.set(0, last);
+    elements.set(elements.size() - 1, first);
+    return elements;
+
 	}
 
 	public static int numberOfPalindromeWord(String text) {
-		return 0;
+    // remove special characters from text
+    // split the text into words
+    // remove duplicate from the list
+    // count the number of palindrome words
+    // return it
+    String textWithoutSpecialChar = text.replaceAll("[^a-zA-Z0-9 ]", "");
+    List<String> words = new ArrayList<String>();
+    for (String word : textWithoutSpecialChar.split(" ")) {
+        if (!words.contains(word.toLowerCase())) {
+            words.add(word.toLowerCase());
+        }
+    }
+    int count = 0;
+    for (String word : words) {
+        if (word.equals(new StringBuilder(word).reverse().toString()) && !word.equals("")) {
+            count++;
+        }
+    }
+    return count;
 	}
 
 	public static String longestWord(String text) {
