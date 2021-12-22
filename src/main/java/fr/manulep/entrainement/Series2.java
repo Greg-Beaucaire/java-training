@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Series2 {
 	
 	private Series2() {
@@ -177,7 +179,25 @@ public class Series2 {
 	}
 
 	public static String longestWord(String text) {
-		return null;
+    // remove special characters from text
+    // split the text into words
+    // remove duplicate from the list
+    // find the longest word
+    // return it
+    String textWithoutSpecialChar = text.replaceAll("[^a-zA-Z0-9 ]", "");
+    List<String> words = new ArrayList<String>();
+    for (String word : textWithoutSpecialChar.split(" ")) {
+        if (!words.contains(word.toLowerCase())) {
+            words.add(word.toLowerCase());
+        }
+    }
+    String longestWord = "";
+    for (String word : words) {
+        if (word.length() > longestWord.length()) {
+            longestWord = word;
+        }
+    }
+    return longestWord;
 	}
 
 	public static String getAllLetters(String[] array) {
@@ -185,7 +205,26 @@ public class Series2 {
 	}
 
 	public static String titleize(String title) {
-		return null;
+    // use StringUtils.capitalize to capitalize the first letter of each noun
+    // if the word is "the" or "and" don't capitalize it
+    // if the word is "the" or "and" only capitalize it if it is the first word of a sentence or if it is the first word after a dot
+    // sysout the result
+    // return the result
+    String[] words = title.split(" ");
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < words.length; i++) {
+        if (words[i].equals("the") || words[i].equals("and")) {
+            if (i == 0 || words[i-1].equals("witch.")) {
+                sb.append(StringUtils.capitalize(words[i]) + " ");
+            } else {
+                sb.append(words[i] + " ");
+            }
+        } else {
+            sb.append(StringUtils.capitalize(words[i]) + " ");
+        }
+    }
+    System.out.println(sb.toString());
+    return sb.toString().trim();
 	}
 
 	public static List<String> findAnagrams(String name) {
