@@ -24,15 +24,12 @@ public class Series2 {
 	}
 
 	public static List<String> sortByLastLetter(List<String> names) {
-    // reverse each name in the list
     List<String> list = new ArrayList<String>();
     for (String name : names) {
         String reverse = new StringBuilder(name).reverse().toString();
         list.add(reverse);
     }
-    // sort the list
     list.sort(null);
-    // reverse the list again
     for (int i = 0; i < list.size(); i++) {
         String name = list.get(i);
         String reverse = new StringBuilder(name).reverse().toString();
@@ -42,25 +39,17 @@ public class Series2 {
 	}
 	
 	public static String exportWordsWithoutALetter(List<String> names, char letter) {
-    // Remove null from list
-    // Exclude the names containing the letter from the list case insensitive
-    // Then sysout the list
     List<String> list = new ArrayList<String>();
     for (String name : names) {
         if (name != null && !name.toLowerCase(Locale.ENGLISH).contains(String.valueOf(letter).toLowerCase(Locale.ENGLISH))) {
             list.add(name);
         }
     }
-    // transform the list into a string where each word is separated by a comma and a space
-    // Remove the last comma and space
-    // Return it
     String result = String.join(", ", list);
     return result;
   }
 	
 	public static String getAllLetters(List<String> words) {
-    // Create a string containing all the letters of the words
-    // Remove duplicate letters
     StringBuilder sb = new StringBuilder();
     for (String word : words) {
         for (char c : word.toCharArray()) {
@@ -69,23 +58,16 @@ public class Series2 {
             }
         }
     }
-    // transform sb to a List
     List<String> list = new ArrayList<String>();
     for (char c : sb.toString().toCharArray()) {
         list.add(String.valueOf(c));
     }
-    // sort the list
     list.sort(null);
-    // transform the list to a string
     String result = String.join("", list);
     return result;
   }
 
 	public static List<String> getElementsLowerThanNumber(List<String> elements, int maxi) {
-    // remove duplicate from elements
-    // order the list in numerical order
-    // remove the elements equal or superior to maxi
-    // return the list
     List<String> list = new ArrayList<String>();
     for (String element : elements) {
         if (element != null && !list.contains(element)) {
@@ -102,7 +84,6 @@ public class Series2 {
   }
 
 	public static List<Integer> exportPeerElements(List<Integer> elements) {
-    // Remove the odd elements from the list and return it
     List<Integer> list = new ArrayList<Integer>();
     for (Integer element : elements) {
         if (element % 2 == 0) {
@@ -113,7 +94,6 @@ public class Series2 {
 	}
 
 	public static List<Integer> exportSortPeerElements(List<Integer> elements) {
-    // remove duplicate from elements and sort the list. Remove odd elements. Return it
     List<Integer> list = new ArrayList<Integer>();
     for (Integer element : elements) {
         if (element % 2 == 0 && !list.contains(element)) {
@@ -125,7 +105,6 @@ public class Series2 {
 	}
 
 	public static List<Integer> allElementsExceptFirstAndLast(List<Integer> elements) {
-    // remove the first and last element from the list and return it
     List<Integer> list = new ArrayList<Integer>();
     for (int i = 1; i < elements.size() - 1; i++) {
         list.add(elements.get(i));
@@ -134,7 +113,6 @@ public class Series2 {
 	}
 	
 	public static List<Integer> reverseOrder(List<Integer> elements) {
-    // reverse the list and return it
     List<Integer> list = new ArrayList<Integer>();
     for (int i = elements.size() - 1; i >= 0; i--) {
         list.add(elements.get(i));
@@ -143,8 +121,6 @@ public class Series2 {
 	}
 
 	public static List<Integer> swapFirstandLastElement(List<Integer> elements) {
-    // swap first and last element from the list. Return it
-    // if the list only consist in one entry, return list
     if (elements.size() == 1) {
         return elements;
     }
@@ -157,11 +133,6 @@ public class Series2 {
 	}
 
 	public static int numberOfPalindromeWord(String text) {
-    // remove special characters from text
-    // split the text into words
-    // remove duplicate from the list
-    // count the number of palindrome words
-    // return it
     String textWithoutSpecialChar = text.replaceAll("[^a-zA-Z0-9 ]", "");
     List<String> words = new ArrayList<String>();
     for (String word : textWithoutSpecialChar.split(" ")) {
@@ -179,11 +150,6 @@ public class Series2 {
 	}
 
 	public static String longestWord(String text) {
-    // remove special characters from text
-    // split the text into words
-    // remove duplicate from the list
-    // find the longest word
-    // return it
     String textWithoutSpecialChar = text.replaceAll("[^a-zA-Z0-9 ]", "");
     List<String> words = new ArrayList<String>();
     for (String word : textWithoutSpecialChar.split(" ")) {
@@ -205,11 +171,6 @@ public class Series2 {
 	}
 
 	public static String titleize(String title) {
-    // use StringUtils.capitalize to capitalize the first letter of each noun
-    // if the word is "the" or "and" don't capitalize it
-    // if the word is "the" or "and" only capitalize it if it is the first word of a sentence or if it is the first word after a dot
-    // sysout the result
-    // return the result
     String[] words = title.split(" ");
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < words.length; i++) {
