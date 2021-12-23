@@ -1,7 +1,11 @@
 package fr.manulep.entrainement;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -113,6 +117,7 @@ public class Series2 {
 	}
 	
 	public static List<Integer> reverseOrder(List<Integer> elements) {
+    // reverse the list and return it
     List<Integer> list = new ArrayList<Integer>();
     for (int i = elements.size() - 1; i >= 0; i--) {
         list.add(elements.get(i));
@@ -184,52 +189,95 @@ public class Series2 {
             sb.append(StringUtils.capitalize(words[i]) + " ");
         }
     }
-    System.out.println(sb.toString());
     return sb.toString().trim();
 	}
 
 	public static List<String> findAnagrams(String name) {
-		return null;
-	}
+    return null;
+  }
+
+  
 
 	public static int roundUp(float number) {
-		return 0;
+    return (int) Math.round(number);
 	}
 
 	public static int findLastDayOfMonth(int month, int year) {
-		return 0;
+    Calendar cal = Calendar.getInstance();
+    cal.set(Calendar.MONTH, month - 1);
+    cal.set(Calendar.YEAR, year);
+    int result = cal.getActualMaximum(Calendar.DATE);
+    System.out.println(result);
+    return result;
 	}
 
 	public static int factorial(int number) {
-		return 0;
+    int result = 1;
+    for (int i = 1; i <= number; i++) {
+        result *= i;
+    }
+    return result;
 	}
 
 	public static int convertToCelsius(int temperature) {
-		return 0;
-	}
+    return (int) Math.round((temperature - 32) * 5 / (float) 9);
+  }
 
 	public static boolean isPeerSum(final int... numbers) {
-		return false;
+    int sum = 0;
+    for (int number : numbers) {
+        sum += number;
+    }
+    return sum % 2 == 0;
 	}
 
 	public static boolean isRightTriangle(int side1, int side2, int side3) {
-		return false;
+    if((side1 * side1) + (side2 * side2) == (side3 * side3)){
+      return true;
+    } else if ((side3 * side3) + (side2 * side2) == (side1 * side1)){
+      return true;
+    } else if ((side1 * side1) + (side3 * side3) == (side2 * side2)){
+      return true;
+    } else {
+      return false;
+    }
 	}
 
 	public static boolean isOrder(int... number) {
-		return false;
+    List<Integer> list = new ArrayList<Integer>();
+    for (int i = 0; i < number.length; i++) {
+        list.add(number[i]);
+    }
+
+    List<Integer> base = new ArrayList<Integer>();
+    for (int i = 0; i < number.length; i++) {
+        base.add(number[i]);
+    }
+
+    Collections.sort(list);
+    if (list.equals(base)) {
+        return true;
+    } else {
+        Collections.reverse(list);
+        if (list.equals(base)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 	}
 
 	public static Float intToFloat(int number) {
-		return null;
+    return (float) number;
 	}
 
 	public static Integer floatToInt(float number) {
-		return null;
+    return (int) number;
 	}
 
 	public static String dateToString(LocalDate date, String format) {
-		return null;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+    return date.format(formatter);
 	}
 
 }
